@@ -37,7 +37,7 @@ argv = get_argv()
 for k in SYNC_CONFIG:
     if argv.__dict__.get(k):
         SYNC_CONFIG[k] = argv.__dict__.get(k)
-        logger.warning(f"fill config value {k} = {len(SYNC_CONFIG[k])} from argv")
+        logger.warning(f"fill config value {k} = {str(SYNC_CONFIG[k])} from argv")
     elif os.getenv(k):
         SYNC_CONFIG[k] = os.getenv(k)
         logger.warning(f"fill config value {k} = {len(SYNC_CONFIG[k])} from env")
