@@ -4,7 +4,6 @@ import logging
 import asyncio
 logger = logging.getLogger(__name__)
 
-
 CURRENT_DIR = os.path.split(os.path.abspath(__file__))[0]  # 当前目录
 garmin_path = CURRENT_DIR + os.path.sep + 'garmin'
 coros_path = CURRENT_DIR + os.path.sep + 'coros'
@@ -31,7 +30,7 @@ def init(activity_db):
 
 def getClient():
     ## db 名称
-    db_name = "activity.db"
+    db_name = SYNC_CONFIG["DB_NAME"]
     ## 建立DB链接
     activity_db = ActivityDB(db_name)
     ## 初始化DB位置和下载文件位置
@@ -54,16 +53,18 @@ def garmin_to_cors():
     garminClient, corosClient, db = getClient()
     garminClient.upload_to_coros(corosClient, db)
 
+
 # 将高驰运动记录导入到佳明
 def coros_to_garmin():
     garminClient, corosClient, db = getClient()
     corosClient.uploadToGarmin(garminClient, db)
-    
+
+
 if __name__ == "__main__":
     # 未配置第一个参数则默认按照GARMIN模式运行
-    arg = sys.argv[1] if len(sys.argv) > 1 else 'GARMIN'
-    logger.warning(f"RUNNING MODE: {arg}")
-    if arg == 'COROS':
+    source = SYNC_CONFIG["SOURCE"]
+    logger.warning(f"data source: {str(source)}")
+    if source == 'COROS':
         coros_to_garmin()
     else:
         garmin_to_cors()
