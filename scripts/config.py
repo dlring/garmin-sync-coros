@@ -7,9 +7,9 @@ logger = logging.getLogger(__name__)
 # 此处无需填值，方便后面的for in根据这里的key从环境变量里面取值即可
 SYNC_CONFIG = {
     'SOURCE': 'GARMIN',
-    'GARMIN_AUTH_DOMAIN': '',
     'GARMIN_EMAIL': '',
     'GARMIN_PASSWORD': '',
+    'GARMIN_AUTH_DOMAIN': '',
     "GARMIN_START_TIME": '',
     "COROS_EMAIL": '',
     "COROS_PASSWORD": '',
