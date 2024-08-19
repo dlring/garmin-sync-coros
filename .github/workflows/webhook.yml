@@ -22,7 +22,7 @@ env:
   COROS_START_TIME: ${{ secrets.COROS_START_TIME }}
 
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-20.04
 
     steps:

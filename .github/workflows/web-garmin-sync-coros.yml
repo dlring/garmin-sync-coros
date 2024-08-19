@@ -41,7 +41,7 @@ env:
   GITHUB_EMAIL: ${{ secrets.GIT_EMAIL }}
 
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-20.04
 
     steps:
