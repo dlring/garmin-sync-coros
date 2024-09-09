@@ -51,8 +51,8 @@ class GarminClient:
         start = 0
         # 起始同步时间
         sync_start_time_ts = int(SYNC_CONFIG["GARMIN_START_TIME"]) if SYNC_CONFIG["GARMIN_START_TIME"].strip() else 0
-        while True:
-            activityInfoList = self.getActivities(start=start, limit=100)
+        while start < 30:
+            activityInfoList = self.getActivities(start=start, limit=10)
             activityList = []
             for activityInfo in activityInfoList:
                 beginTimestamp = activityInfo["beginTimestamp"]
@@ -65,7 +65,7 @@ class GarminClient:
                 all_activities.extend(activityList)
             else:
                 return all_activities
-            start += 100
+            start += 10
 
     ## 下载原始格式的运动
     def downloadFitActivity(self, activity):
